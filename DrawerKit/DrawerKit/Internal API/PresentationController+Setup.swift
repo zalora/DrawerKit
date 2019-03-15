@@ -128,6 +128,7 @@ extension PresentationController {
         handleView.translatesAutoresizingMaskIntoConstraints = false
         handleView.backgroundColor = handleConfig.backgroundColor
         handleView.layer.masksToBounds = true
+        handleView.contentMode = .scaleAspectFit
 
         switch handleConfig.cornerRadius {
         case .automatic:
