@@ -155,6 +155,8 @@ public struct DrawerConfiguration {
     /// property to `nil` to hide the handle view. The default value is
     /// `HandleViewConfiguration()`.
     public var handleViewConfiguration: HandleViewConfiguration?
+    
+    public var backgroundViewConfiguration : BackgroundViewConfiguration?
 
     /// The configuration options for the drawer's border, should it be shown. Set this
     /// property to `nil` so as not to have a drawer border. The default value is `nil`.
@@ -186,6 +188,7 @@ public struct DrawerConfiguration {
                 maximumCornerRadius: CGFloat = 15,
                 cornerAnimationOption: CornerAnimationOption = .maximumAtPartialY,
                 handleViewConfiguration: HandleViewConfiguration? = HandleViewConfiguration(),
+                backgroundViewConfiguration: BackgroundViewConfiguration? = nil,
                 drawerBorderConfiguration: DrawerBorderConfiguration? = nil,
                 drawerShadowConfiguration: DrawerShadowConfiguration? = nil,
                 passthroughTouchesInStates: PassthroughOptions = [.collapsed, .partiallyExpanded]) {
@@ -217,6 +220,7 @@ public struct DrawerConfiguration {
         self.drawerBorderConfiguration = drawerBorderConfiguration
         self.drawerShadowConfiguration = drawerShadowConfiguration
         self.passthroughTouchesInStates = passthroughTouchesInStates
+        self.backgroundViewConfiguration = backgroundViewConfiguration
     }
 }
 
@@ -240,5 +244,6 @@ extension DrawerConfiguration: Equatable {
             && lhs.handleViewConfiguration == rhs.handleViewConfiguration
             && lhs.drawerBorderConfiguration == rhs.drawerBorderConfiguration
             && lhs.drawerShadowConfiguration == rhs.drawerShadowConfiguration
+            && lhs.backgroundViewConfiguration == rhs.backgroundViewConfiguration
     }
 }

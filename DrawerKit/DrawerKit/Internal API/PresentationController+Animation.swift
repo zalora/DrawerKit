@@ -39,7 +39,12 @@ extension PresentationController {
 
         let endingHandleViewAlpha = handleViewAlpha(at: endingState)
         let autoAnimatesDimming = configuration.handleViewConfiguration?.autoAnimatesDimming ?? false
-        if autoAnimatesDimming { self.handleView?.alpha = handleViewAlpha(at: startingState) }
+        let handleViewHasImages = handleViewConfiguration?.hasImages ?? false
+        if autoAnimatesDimming && !handleViewHasImages { self.handleView?.alpha = handleViewAlpha(at: startingState) }
+        if handleViewHasImages { self.handleView?.image = handleViewImage(at: startingState) }
+        
+        let endBackgroundViewAlpha = backgroundViewAlpha(at: endingState)
+        self.backgroundView?.alpha = backgroundViewAlpha(at: startingState)
 
         let presentingAnimationActions = self.presentingDrawerAnimationActions
         let presentedAnimationActions = self.presentedDrawerAnimationActions
@@ -52,7 +57,9 @@ extension PresentationController {
 
         animator.addAnimations {
             self.currentDrawerY = endingPositionY
-            if autoAnimatesDimming { self.handleView?.alpha = endingHandleViewAlpha }
+            self.backgroundView?.alpha = endBackgroundViewAlpha
+            if autoAnimatesDimming && !handleViewHasImages { self.handleView?.alpha = endingHandleViewAlpha }
+            if handleViewHasImages { self.handleView?.image = self.handleViewImage(at: endingState) }
             if maxCornerRadius != 0 { self.currentDrawerCornerRadius = endingCornerRadius }
             AnimationSupport.clientAnimateAlong(presentingDrawerAnimationActions: presentingAnimationActions,
                                                 presentedDrawerAnimationActions: presentedAnimationActions,
@@ -61,10 +68,11 @@ extension PresentationController {
         }
 
         animator.addCompletion { endingPosition in
-            if autoAnimatesDimming { self.handleView?.alpha = endingHandleViewAlpha }
-
+            if autoAnimatesDimming && !handleViewHasImages { self.handleView?.alpha = endingHandleViewAlpha }
             let isStartingStateDismissed = (startingState == .dismissed)
             let isEndingStateDismissed = (endingState == .dismissed)
+            self.backgroundView?.alpha = endBackgroundViewAlpha
+            if handleViewHasImages { self.handleView?.image = self.handleViewImage(at: endingState) }
 
             let shouldDismiss =
                 (isStartingStateDismissed && endingPosition == .start) ||

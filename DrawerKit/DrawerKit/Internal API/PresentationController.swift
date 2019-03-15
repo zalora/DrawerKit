@@ -3,7 +3,8 @@ import UIKit
 final class PresentationController: UIPresentationController {
     let configuration: DrawerConfiguration // intentionally internal and immutable
     let inDebugMode: Bool
-    let handleView: UIView?
+    let handleView: UIImageView?
+    let backgroundView: UIView?
 
     var presentationContainerView: PresentationContainerView!
 
@@ -54,7 +55,8 @@ final class PresentationController: UIPresentationController {
          inDebugMode: Bool = false) {
         self.configuration = configuration
         self.inDebugMode = inDebugMode
-        self.handleView = (configuration.handleViewConfiguration != nil ? UIView() : nil)
+        self.handleView = (configuration.handleViewConfiguration != nil ? UIImageView() : nil)
+        self.backgroundView = (configuration.handleViewConfiguration != nil ? UIView() : nil)
         self.presentingDrawerAnimationActions = presentingDrawerAnimationActions
         self.presentedDrawerAnimationActions = presentedDrawerAnimationActions
         self.targetDrawerState = configuration.initialState ?? (configuration.supportsPartialExpansion ? .partiallyExpanded : .fullyExpanded)
@@ -127,6 +129,7 @@ extension PresentationController {
         setupDrawerDragRecogniser()
         setupDebugHeightMarks()
         setupHandleView()
+        setupBackgroundView()
         setupDrawerBorder()
         setupDrawerShadow()
         addCornerRadiusAnimationEnding(at: .partiallyExpanded)
@@ -151,6 +154,7 @@ extension PresentationController {
         removeDrawerDismissalTapRecogniser()
         removeDrawerDragRecogniser()
         removeHandleView()
+        removeBackgroundView()
     }
 
     override func containerViewWillLayoutSubviews() {

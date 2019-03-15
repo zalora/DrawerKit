@@ -129,6 +129,32 @@ extension PresentationController {
     func handleViewAlpha(at state: DrawerState) -> CGFloat {
         return triangularValue(at: state)
     }
+    
+    func handleViewImage(at state: DrawerState) -> UIImage? {
+        
+        switch state {
+        case .fullyExpanded:
+            return handleViewConfiguration?.closingImage
+        case .partiallyExpanded:
+            
+            if supportsPartialExpansion {
+                return handleViewConfiguration?.openingImage
+            } else {
+                return handleViewConfiguration?.closingImage
+            }
+            
+        case .collapsed, .dismissed:
+            return handleViewConfiguration?.openingImage
+            
+        case .transitioning(let positionY):
+            
+            if positionY < drawerPartialY {
+                return handleViewConfiguration?.openingImage
+            } else {
+                return handleViewConfiguration?.closingImage
+            }
+        }
+    }
 
     private func triangularValue(at state: DrawerState) -> CGFloat {
         let drawerFullY = configuration.fullExpansionBehaviour.drawerFullY
@@ -156,5 +182,26 @@ extension PresentationController {
         }
 
         return fraction
+    }
+    
+    func backgroundViewAlpha(at state: DrawerState) -> CGFloat {
+        
+        switch state {
+        case .fullyExpanded, .partiallyExpanded:
+            return 1.0
+        case .collapsed, .dismissed:
+            return 0
+        case .transitioning(let positionY):
+            //TODO
+//            print("PositionY \(positionY)")
+            
+//            let drawerFullY = configuration.fullExpansionBehaviour.drawerFullY
+//            var height : CGFloat = (positionY - drawerFullY) / (containerViewHeight - drawerFullY)
+//            if height < 0 { height = 1 } else { height = 1 - height}
+//
+//            print("PositionY \(positionY), height: \(height)")
+            
+            return 1
+        }
     }
 }

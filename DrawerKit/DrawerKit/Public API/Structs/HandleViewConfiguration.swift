@@ -29,6 +29,13 @@ public struct HandleViewConfiguration {
 
     /// The handle view's background color. The default value is `UIColor.gray`.
     public var backgroundColor: UIColor
+    
+    public var openingImage: UIImage?
+    public var closingImage: UIImage?
+    
+    public var hasImages: Bool {
+        return openingImage != nil && closingImage != nil
+    }
 
     /// The handle view's bounding rectangle's size. The default value is
     /// `CGSize(width: 40, height: 6)`.
@@ -46,10 +53,14 @@ public struct HandleViewConfiguration {
 
     public init(autoAnimatesDimming: Bool = true,
                 backgroundColor: UIColor = .gray,
+                openingImage: UIImage? = nil,
+                closingImage: UIImage? = nil,
                 size: CGSize = CGSize(width: 40, height: 6),
                 top: CGFloat = 8,
                 cornerRadius: CornerRadius = .automatic) {
         self.autoAnimatesDimming = autoAnimatesDimming
+        self.openingImage = openingImage
+        self.closingImage = closingImage
 
         if backgroundColor == .clear {
             self.backgroundColor = .gray
@@ -82,5 +93,7 @@ extension HandleViewConfiguration: Equatable {
             && lhs.top == rhs.top
             && lhs.size == rhs.size
             && lhs.cornerRadius == rhs.cornerRadius
+            && lhs.openingImage == rhs.openingImage
+            && lhs.closingImage == rhs.closingImage
     }
 }

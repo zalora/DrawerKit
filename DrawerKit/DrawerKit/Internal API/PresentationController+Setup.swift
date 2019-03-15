@@ -135,6 +135,10 @@ extension PresentationController {
         case let .custom(radius):
             handleView.layer.cornerRadius = radius
         }
+        
+        if handleConfig.hasImages {
+            handleView.image = handleConfig.openingImage
+        }
 
         presentedView.addSubview(handleView)
 
@@ -148,6 +152,31 @@ extension PresentationController {
 
     func removeHandleView() {
         self.handleView?.removeFromSuperview()
+    }
+}
+
+extension PresentationController {
+    func setupBackgroundView() {
+        guard
+            let containerView = self.containerView,
+            let backgroundView = self.backgroundView,
+            let backgroundconfig = configuration.backgroundViewConfiguration
+            else { return }
+        
+        backgroundView.backgroundColor = backgroundconfig.backgroundColor   
+        backgroundView.translatesAutoresizingMaskIntoConstraints = false
+        containerView.addSubview(backgroundView)
+        
+        NSLayoutConstraint.activate([
+            backgroundView.topAnchor.constraint(equalTo: containerView.topAnchor),
+            backgroundView.leftAnchor.constraint(equalTo: containerView.leftAnchor),
+            backgroundView.rightAnchor.constraint(equalTo: containerView.rightAnchor),
+            backgroundView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor)
+            ])
+    }
+    
+    func removeBackgroundView() {
+        self.backgroundView?.removeFromSuperview()
     }
 }
 
