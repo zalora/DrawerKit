@@ -138,7 +138,7 @@ extension PresentationController {
         }
         
         if handleConfig.hasImages {
-            handleView.image = handleConfig.openingImage
+            handleView.image = configuration.supportsPartialExpansion ? handleConfig.openingImage : handleConfig.closingImage
         }
 
         presentedView.addSubview(handleView)
