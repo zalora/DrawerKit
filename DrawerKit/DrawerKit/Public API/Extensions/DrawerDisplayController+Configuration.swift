@@ -67,8 +67,8 @@ extension DrawerDisplayController {
         return configuration.numberOfTapsForOutsideDrawerDismissal
     }
     
-    public var isDismissableByHandleViewTaps: Bool {
-        return configuration.isDismissableByHandleViewTaps
+    public var isDismissableByHandleViewTapsForFullDrawerPresentation: Bool {
+        return configuration.isDismissableByHandleViewTapsForFullDrawerPresentation
     }
 
     public var handleViewConfiguration: HandleViewConfiguration? {

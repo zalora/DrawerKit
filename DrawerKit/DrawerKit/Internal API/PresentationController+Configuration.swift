@@ -61,8 +61,8 @@ extension PresentationController {
         return configuration.numberOfTapsForOutsideDrawerDismissal
     }
     
-    var isDismissableByHandleViewTaps: Bool {
-        return configuration.isDismissableByHandleViewTaps
+    var isDismissableByHandleViewTapsForFullDrawerPresentation: Bool {
+        return configuration.isDismissableByHandleViewTapsForFullDrawerPresentation
     }
 
     var handleViewConfiguration: HandleViewConfiguration? {
