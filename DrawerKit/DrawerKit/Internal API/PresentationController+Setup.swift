@@ -72,14 +72,43 @@ extension PresentationController {
         drawerDismissalTapGR = tapGesture
     }
 
-    func removeDrawerDismissalHandleViewTapRecogniser() {
+    func removeDrawerDismissalTapRecogniser() {
         guard let tapGesture = drawerDismissalTapGR else { return }
         containerView?.removeGestureRecognizer(tapGesture)
         drawerDismissalTapGR = nil
     }
-
-    func enableDrawerDismissalHandleViewTapRecogniser(enabled: Bool) {
+    
+    func enableDrawerDismissalTapRecogniser(enabled: Bool) {
         drawerDismissalTapGR?.isEnabled = enabled
+    }
+}
+
+extension PresentationController {
+    func setupDrawerDismissalHandleViewTapRecogniser() {
+        guard drawerDismissalHandleViewTapGR == nil else { return }
+        let isDismissable = isDismissableByHandleViewTapsForFullDrawerPresentation
+        let numTapsRequired = numberOfTapsForHandleViewDismissal
+        guard isDismissable && numTapsRequired > 0 else { return }
+        let tapGesture = UITapGestureRecognizer(target: self,
+                                                action: #selector(handleDrawerDismissalHandleViewTap))
+        tapGesture.numberOfTouchesRequired = 1
+        tapGesture.numberOfTapsRequired = numTapsRequired
+        tapGesture.cancelsTouchesInView = false
+        tapGesture.delaysTouchesBegan = false
+        tapGesture.delaysTouchesEnded = false
+        tapGesture.delegate = self
+        handleView?.addGestureRecognizer(tapGesture)
+        drawerDismissalHandleViewTapGR = tapGesture
+    }
+    
+    func removeDrawerDismissalHandleViewTapRecogniser() {
+        guard let tapGesture = drawerDismissalHandleViewTapGR else { return }
+        handleView?.removeGestureRecognizer(tapGesture)
+        drawerDismissalHandleViewTapGR = nil
+    }
+    
+    func enableDrawerDismissalHandleViewTapRecogniser(enabled: Bool) {
+        drawerDismissalHandleViewTapGR?.isEnabled = enabled
     }
 }
 
@@ -96,35 +125,6 @@ extension PresentationController {
         guard let panGesture = drawerDragGR else { return }
         presentedView?.removeGestureRecognizer(panGesture)
         drawerDragGR = nil
-    }
-}
-
-extension PresentationController {
-    func setupDrawerDismissalHandleViewTapRecogniser() {
-        guard drawerDismissalHandleViewTapGR == nil else { return }
-        let isDismissable = isDismissableByOutsideDrawerTaps
-        let numTapsRequired = numberOfTapsForOutsideDrawerDismissal
-        guard isDismissable && numTapsRequired > 0 else { return }
-        let tapGesture = UITapGestureRecognizer(target: self,
-                                                action: #selector(handleDrawerDismissalTap))
-        tapGesture.numberOfTouchesRequired = 1
-        tapGesture.numberOfTapsRequired = numTapsRequired
-        tapGesture.cancelsTouchesInView = false
-        tapGesture.delaysTouchesBegan = false
-        tapGesture.delaysTouchesEnded = false
-        tapGesture.delegate = self
-        containerView?.addGestureRecognizer(tapGesture)
-        drawerDismissalTapGR = tapGesture
-    }
-    
-    func removeDrawerDismissalTapRecogniser() {
-        guard let tapGesture = drawerDismissalTapGR else { return }
-        containerView?.removeGestureRecognizer(tapGesture)
-        drawerDismissalTapGR = nil
-    }
-    
-    func enableDrawerDismissalTapRecogniser(enabled: Bool) {
-        drawerDismissalTapGR?.isEnabled = enabled
     }
 }
 

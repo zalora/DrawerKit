@@ -127,6 +127,7 @@ extension PresentationController {
         containerView?.backgroundColor = .clear
         setupDrawerFullExpansionTapRecogniser()
         setupDrawerDismissalTapRecogniser()
+        setupDrawerDismissalHandleViewTapRecogniser()
         setupDrawerDragRecogniser()
         setupDebugHeightMarks()
         setupHandleView()
@@ -136,23 +137,27 @@ extension PresentationController {
         addCornerRadiusAnimationEnding(at: .partiallyExpanded)
         enableDrawerFullExpansionTapRecogniser(enabled: false)
         enableDrawerDismissalTapRecogniser(enabled: false)
+        enableDrawerDismissalHandleViewTapRecogniser(enabled: false)
     }
 
     override func presentationTransitionDidEnd(_ completed: Bool) {
         enableDrawerFullExpansionTapRecogniser(enabled: true)
         enableDrawerDismissalTapRecogniser(enabled: true)
+        enableDrawerDismissalHandleViewTapRecogniser(enabled: true)
     }
 
     override func dismissalTransitionWillBegin() {
         addCornerRadiusAnimationEnding(at: .dismissed)
         enableDrawerFullExpansionTapRecogniser(enabled: false)
         enableDrawerDismissalTapRecogniser(enabled: false)
+        enableDrawerDismissalHandleViewTapRecogniser(enabled: false)
     }
 
     override func dismissalTransitionDidEnd(_ completed: Bool) {
         removePresentationContainerView()
         removeDrawerFullExpansionTapRecogniser()
         removeDrawerDismissalTapRecogniser()
+        removeDrawerDismissalHandleViewTapRecogniser()
         removeDrawerDragRecogniser()
         removeHandleView()
         removeBackgroundView()

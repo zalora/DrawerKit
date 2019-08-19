@@ -51,6 +51,14 @@ extension PresentationController {
             break
         }
     }
+    
+    @objc func handleDrawerDismissalHandleViewTap() {
+        guard let tapGesture = drawerDismissalHandleViewTapGR else { return }
+        NotificationCenter.default.post(notification: DrawerNotification.drawerInteriorTapped)
+        tapGesture.isEnabled = false
+        backgroundView?.alpha = 0
+        animateTransition(to: .dismissed)
+    }
 
     func applyTranslationY(_ translationY: CGFloat) {
         currentDrawerY += translationY
