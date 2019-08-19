@@ -72,6 +72,7 @@ final class PresentationController: UIPresentationController {
             targetDrawerState == .fullyExpanded ||
             targetDrawerState == .collapsed
         drawerFullExpansionTapGR?.isEnabled = (targetDrawerState == .partiallyExpanded || targetDrawerState == .collapsed)
+        enableDrawerDismissalHandleButton(enabled: targetDrawerState == .fullyExpanded)
 
         if let scrollView = scrollViewForPullToDismiss, let manager = pullToDismissManager {
             switch targetDrawerState {
@@ -139,20 +140,17 @@ extension PresentationController {
         addCornerRadiusAnimationEnding(at: .partiallyExpanded)
         enableDrawerFullExpansionTapRecogniser(enabled: false)
         enableDrawerDismissalTapRecogniser(enabled: false)
-        enableDrawerDismissalHandleButton(enabled: false)
     }
 
     override func presentationTransitionDidEnd(_ completed: Bool) {
         enableDrawerFullExpansionTapRecogniser(enabled: true)
         enableDrawerDismissalTapRecogniser(enabled: true)
-        enableDrawerDismissalHandleButton(enabled: true)
     }
 
     override func dismissalTransitionWillBegin() {
         addCornerRadiusAnimationEnding(at: .dismissed)
         enableDrawerFullExpansionTapRecogniser(enabled: false)
         enableDrawerDismissalTapRecogniser(enabled: false)
-        enableDrawerDismissalHandleButton(enabled: false)
     }
 
     override func dismissalTransitionDidEnd(_ completed: Bool) {
