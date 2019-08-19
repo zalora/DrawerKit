@@ -72,13 +72,13 @@ extension PresentationController {
         drawerDismissalTapGR = tapGesture
     }
 
-    func removeDrawerDismissalTapRecogniser() {
+    func removeDrawerDismissalHandleViewTapRecogniser() {
         guard let tapGesture = drawerDismissalTapGR else { return }
         containerView?.removeGestureRecognizer(tapGesture)
         drawerDismissalTapGR = nil
     }
 
-    func enableDrawerDismissalTapRecogniser(enabled: Bool) {
+    func enableDrawerDismissalHandleViewTapRecogniser(enabled: Bool) {
         drawerDismissalTapGR?.isEnabled = enabled
     }
 }
@@ -96,6 +96,35 @@ extension PresentationController {
         guard let panGesture = drawerDragGR else { return }
         presentedView?.removeGestureRecognizer(panGesture)
         drawerDragGR = nil
+    }
+}
+
+extension PresentationController {
+    func setupDrawerDismissalHandleViewTapRecogniser() {
+        guard drawerDismissalHandleViewTapGR == nil else { return }
+        let isDismissable = isDismissableByOutsideDrawerTaps
+        let numTapsRequired = numberOfTapsForOutsideDrawerDismissal
+        guard isDismissable && numTapsRequired > 0 else { return }
+        let tapGesture = UITapGestureRecognizer(target: self,
+                                                action: #selector(handleDrawerDismissalTap))
+        tapGesture.numberOfTouchesRequired = 1
+        tapGesture.numberOfTapsRequired = numTapsRequired
+        tapGesture.cancelsTouchesInView = false
+        tapGesture.delaysTouchesBegan = false
+        tapGesture.delaysTouchesEnded = false
+        tapGesture.delegate = self
+        containerView?.addGestureRecognizer(tapGesture)
+        drawerDismissalTapGR = tapGesture
+    }
+    
+    func removeDrawerDismissalTapRecogniser() {
+        guard let tapGesture = drawerDismissalTapGR else { return }
+        containerView?.removeGestureRecognizer(tapGesture)
+        drawerDismissalTapGR = nil
+    }
+    
+    func enableDrawerDismissalTapRecogniser(enabled: Bool) {
+        drawerDismissalTapGR?.isEnabled = enabled
     }
 }
 

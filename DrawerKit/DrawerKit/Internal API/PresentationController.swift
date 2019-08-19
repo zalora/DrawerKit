@@ -14,6 +14,7 @@ final class PresentationController: UIPresentationController {
     var drawerFullExpansionTapGR: UITapGestureRecognizer?
     var drawerDismissalTapGR: UITapGestureRecognizer?
     var drawerDragGR: UIPanGestureRecognizer?
+    var drawerDismissalHandleViewTapGR: UITapGestureRecognizer?
 
     /// The target state of the drawer. If no presentation animation is in
     /// progress, the value should be equivalent to `currentDrawerState`.
