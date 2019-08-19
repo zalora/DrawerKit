@@ -52,10 +52,9 @@ extension PresentationController {
         }
     }
     
-    @objc func handleDrawerDismissalHandleViewTap() {
-        guard let tapGesture = drawerDismissalHandleViewTapGR else { return }
+    @objc func handleDrawerDismissalHandleButtonTouchUpInside() {
         NotificationCenter.default.post(notification: DrawerNotification.drawerInteriorTapped)
-        tapGesture.isEnabled = false
+        handleButton?.isEnabled = false
         backgroundView?.alpha = 0
         animateTransition(to: .dismissed)
     }

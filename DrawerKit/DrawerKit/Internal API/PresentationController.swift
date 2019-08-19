@@ -4,6 +4,7 @@ final class PresentationController: UIPresentationController {
     let configuration: DrawerConfiguration // intentionally internal and immutable
     let inDebugMode: Bool
     let handleView: UIImageView?
+    let handleButton: UIButton?
     let backgroundView: UIView?
 
     var presentationContainerView: PresentationContainerView!
@@ -14,7 +15,6 @@ final class PresentationController: UIPresentationController {
     var drawerFullExpansionTapGR: UITapGestureRecognizer?
     var drawerDismissalTapGR: UITapGestureRecognizer?
     var drawerDragGR: UIPanGestureRecognizer?
-    var drawerDismissalHandleViewTapGR: UITapGestureRecognizer?
 
     /// The target state of the drawer. If no presentation animation is in
     /// progress, the value should be equivalent to `currentDrawerState`.
@@ -57,6 +57,7 @@ final class PresentationController: UIPresentationController {
         self.configuration = configuration
         self.inDebugMode = inDebugMode
         self.handleView = (configuration.handleViewConfiguration != nil ? UIImageView() : nil)
+        self.handleButton = (configuration.handleViewConfiguration != nil ? UIButton() : nil)
         self.backgroundView = (configuration.handleViewConfiguration != nil ? UIView() : nil)
         self.presentingDrawerAnimationActions = presentingDrawerAnimationActions
         self.presentedDrawerAnimationActions = presentedDrawerAnimationActions
@@ -127,9 +128,10 @@ extension PresentationController {
         containerView?.backgroundColor = .clear
         setupDrawerFullExpansionTapRecogniser()
         setupDrawerDismissalTapRecogniser()
-        setupDrawerDismissalHandleViewTapRecogniser()
+        setupDrawerDismissalHandleButtonAction()
         setupDrawerDragRecogniser()
         setupDebugHeightMarks()
+        setupHandleButton()
         setupHandleView()
         setupBackgroundView()
         setupDrawerBorder()
@@ -137,28 +139,29 @@ extension PresentationController {
         addCornerRadiusAnimationEnding(at: .partiallyExpanded)
         enableDrawerFullExpansionTapRecogniser(enabled: false)
         enableDrawerDismissalTapRecogniser(enabled: false)
-        enableDrawerDismissalHandleViewTapRecogniser(enabled: false)
+        enableDrawerDismissalHandleButton(enabled: false)
     }
 
     override func presentationTransitionDidEnd(_ completed: Bool) {
         enableDrawerFullExpansionTapRecogniser(enabled: true)
         enableDrawerDismissalTapRecogniser(enabled: true)
-        enableDrawerDismissalHandleViewTapRecogniser(enabled: true)
+        enableDrawerDismissalHandleButton(enabled: true)
     }
 
     override func dismissalTransitionWillBegin() {
         addCornerRadiusAnimationEnding(at: .dismissed)
         enableDrawerFullExpansionTapRecogniser(enabled: false)
         enableDrawerDismissalTapRecogniser(enabled: false)
-        enableDrawerDismissalHandleViewTapRecogniser(enabled: false)
+        enableDrawerDismissalHandleButton(enabled: false)
     }
 
     override func dismissalTransitionDidEnd(_ completed: Bool) {
         removePresentationContainerView()
         removeDrawerFullExpansionTapRecogniser()
         removeDrawerDismissalTapRecogniser()
-        removeDrawerDismissalHandleViewTapRecogniser()
+        removeDrawerDismissalHandleButtonAction()
         removeDrawerDragRecogniser()
+        removeHandleButton()
         removeHandleView()
         removeBackgroundView()
     }
