@@ -122,6 +122,10 @@ public struct DrawerConfiguration {
     /// Whether or not the drawer can be dismissed by tapping on the handle view when it's in full presentation state.
     /// The default value is `true`.
     public var isDismissableByHandleViewTapsForFullDrawerPresentation: Bool
+    
+    /// How many taps are required for dismissing the drawer by tapping on the handle view when it's in full presentation state.
+    /// The default value is 1.
+    public var numberOfTapsForHandleViewDismissal: Int
 
     /// How fast one needs to "flick" the drawer up or down to make it ignore the
     /// partially expanded state. Flicking fast enough up always presents to full screen
@@ -187,6 +191,7 @@ public struct DrawerConfiguration {
                 isDismissableByOutsideDrawerTaps: Bool = true,
                 numberOfTapsForOutsideDrawerDismissal: Int = 1,
                 isDismissableByHandleViewTapsForFullDrawerPresentation: Bool = true,
+                numberOfTapsForHandleViewDismissal: Int = 1,
                 flickSpeedThreshold: CGFloat = 3,
                 upperMarkGap: CGFloat = 40,
                 lowerMarkGap: CGFloat = 40,
@@ -217,6 +222,7 @@ public struct DrawerConfiguration {
         self.isDismissableByOutsideDrawerTaps = isDismissableByOutsideDrawerTaps
         self.numberOfTapsForOutsideDrawerDismissal = max(0, numberOfTapsForOutsideDrawerDismissal)
         self.isDismissableByHandleViewTapsForFullDrawerPresentation = isDismissableByHandleViewTapsForFullDrawerPresentation
+        self.numberOfTapsForHandleViewDismissal = max(0, numberOfTapsForHandleViewDismissal)
         self.flickSpeedThreshold = max(0, flickSpeedThreshold)
         self.upperMarkGap = max(0, upperMarkGap)
         self.lowerMarkGap = max(0, lowerMarkGap)
@@ -244,6 +250,7 @@ extension DrawerConfiguration: Equatable {
             && lhs.isDismissableByOutsideDrawerTaps == rhs.isDismissableByOutsideDrawerTaps
             && lhs.numberOfTapsForOutsideDrawerDismissal == rhs.numberOfTapsForOutsideDrawerDismissal
             && lhs.isDismissableByHandleViewTapsForFullDrawerPresentation == rhs.isDismissableByHandleViewTapsForFullDrawerPresentation
+            && lhs.numberOfTapsForHandleViewDismissal == rhs.numberOfTapsForHandleViewDismissal
             && lhs.flickSpeedThreshold == rhs.flickSpeedThreshold
             && lhs.upperMarkGap == rhs.upperMarkGap
             && lhs.lowerMarkGap == rhs.lowerMarkGap
