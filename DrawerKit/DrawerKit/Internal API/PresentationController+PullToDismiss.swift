@@ -76,6 +76,8 @@ final class PullToDismissManager: NSObject, UIScrollViewDelegate {
                 presentationController.presentedViewController.view.layoutIfNeeded()
             }
         }
+        
+        delegate?.scrollViewDidScroll?(scrollView)
     }
 
     func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
