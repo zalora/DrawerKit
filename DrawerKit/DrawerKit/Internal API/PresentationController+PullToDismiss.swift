@@ -45,11 +45,14 @@ final class PullToDismissManager: NSObject, UIScrollViewDelegate {
 
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         guard let presentationController = presentationController,
-              scrollView.isScrollEnabled,
-              !scrollViewNeedsTransitionAsDragEnds,
-              !scrollViewIsDecelerating,
-              scrollEndVelocity == nil
-            else { return }
+            scrollView.isScrollEnabled,
+            !scrollViewNeedsTransitionAsDragEnds,
+            !scrollViewIsDecelerating,
+            scrollEndVelocity == nil else {
+                // Forwards to the scrollViewDidScroll method of client
+                delegate?.scrollViewDidScroll?(scrollView)
+                return
+        }
 
         let currentDrawerState = presentationController.currentDrawerState
         let topInset = scrollView.topInset
@@ -77,6 +80,7 @@ final class PullToDismissManager: NSObject, UIScrollViewDelegate {
             }
         }
         
+        // Forward to the scrollViewDidScroll method of client after modify it
         delegate?.scrollViewDidScroll?(scrollView)
     }
 
