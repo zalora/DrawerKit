@@ -49,6 +49,7 @@ final class PullToDismissManager: NSObject, UIScrollViewDelegate {
             !scrollViewNeedsTransitionAsDragEnds,
             !scrollViewIsDecelerating,
             scrollEndVelocity == nil else {
+                // Forwards to the scrollViewDidScroll method of client
                 delegate?.scrollViewDidScroll?(scrollView)
                 return
         }
@@ -79,6 +80,7 @@ final class PullToDismissManager: NSObject, UIScrollViewDelegate {
             }
         }
         
+        // Forward to the scrollViewDidScroll method of client after modify it
         delegate?.scrollViewDidScroll?(scrollView)
     }
 
