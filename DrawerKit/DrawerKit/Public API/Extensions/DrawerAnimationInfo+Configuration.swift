@@ -66,6 +66,10 @@ extension DrawerAnimationInfo {
     public var numberOfTapsForOutsideDrawerDismissal: Int {
         return configuration.numberOfTapsForOutsideDrawerDismissal
     }
+    
+    public var isDismissableByTouchingUpInsideHandleView: Bool {
+        return configuration.isDismissableByTouchingUpInsideHandleView
+    }
 
     public var handleViewConfiguration: HandleViewConfiguration? {
         return configuration.handleViewConfiguration
