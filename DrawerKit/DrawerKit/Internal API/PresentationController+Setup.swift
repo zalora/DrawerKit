@@ -183,6 +183,7 @@ extension PresentationController {
         handleButton.translatesAutoresizingMaskIntoConstraints = false
         handleButton.backgroundColor = .clear
         handleButton.layer.masksToBounds = true
+        handleButton.accessibilityIdentifier = "dismissDrawerButton"
         
         presentedView.addSubview(handleButton)
         
