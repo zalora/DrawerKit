@@ -189,3 +189,8 @@ fastlane/README.md
 fastlane/report.xml
 vendor/
 IDEWorkspaceChecks.plist
+
+# Swift Package Manager
+.build/
+.swiftpm/
+Package.resolved

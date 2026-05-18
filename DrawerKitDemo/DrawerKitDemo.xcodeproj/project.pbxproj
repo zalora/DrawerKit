@@ -3,17 +3,17 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 48;
+	objectVersion = 60;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7E8006882FBB12E3008B5EB5 /* DrawerKit in Frameworks */ = {isa = PBXBuildFile; productRef = 7E8006872FBB12E3008B5EB5 /* DrawerKit */; };
 		9AB81C482076E73800C7A595 /* PresentedNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AB81C472076E73800C7A595 /* PresentedNavigationController.swift */; };
+		ABCD000000000000000000A3 /* DrawerKit in Frameworks */ = {isa = PBXBuildFile; productRef = ABCD000000000000000000A2 /* DrawerKit */; };
 		CBBA2D3A1F8E807400E0137F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBBA2D391F8E807400E0137F /* AppDelegate.swift */; };
 		CBBA2D411F8E807400E0137F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CBBA2D3F1F8E807400E0137F /* Main.storyboard */; };
 		CBBA2D431F8E807400E0137F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CBBA2D421F8E807400E0137F /* Assets.xcassets */; };
 		CBBA2D461F8E807400E0137F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CBBA2D441F8E807400E0137F /* LaunchScreen.storyboard */; };
-		CBBA2D631F8E817400E0137F /* DrawerKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBBA2D621F8E817400E0137F /* DrawerKit.framework */; };
-		CBBA2D641F8E817400E0137F /* DrawerKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CBBA2D621F8E817400E0137F /* DrawerKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		CBBA2D6F1F8E83E300E0137F /* PresenterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBBA2D6B1F8E83E300E0137F /* PresenterViewController.swift */; };
 		CBBA2D711F8E83E300E0137F /* PresentedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBBA2D6D1F8E83E300E0137F /* PresentedView.swift */; };
 		CBBA2D721F8E83E300E0137F /* PresentedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBBA2D6E1F8E83E300E0137F /* PresentedViewController.swift */; };
@@ -30,20 +30,6 @@
 		};
 /* End PBXContainerItemProxy section */
 
-/* Begin PBXCopyFilesBuildPhase section */
-		CBBA2D651F8E817400E0137F /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				CBBA2D641F8E817400E0137F /* DrawerKit.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
-
 /* Begin PBXFileReference section */
 		9AB81C472076E73800C7A595 /* PresentedNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentedNavigationController.swift; sourceTree = "<group>"; };
 		CBBA2D361F8E807400E0137F /* DrawerKitDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DrawerKitDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -52,7 +38,6 @@
 		CBBA2D421F8E807400E0137F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CBBA2D451F8E807400E0137F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CBBA2D471F8E807400E0137F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		CBBA2D621F8E817400E0137F /* DrawerKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = DrawerKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CBBA2D6B1F8E83E300E0137F /* PresenterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresenterViewController.swift; sourceTree = "<group>"; };
 		CBBA2D6D1F8E83E300E0137F /* PresentedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentedView.swift; sourceTree = "<group>"; };
 		CBBA2D6E1F8E83E300E0137F /* PresentedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentedViewController.swift; sourceTree = "<group>"; };
@@ -66,7 +51,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CBBA2D631F8E817400E0137F /* DrawerKit.framework in Frameworks */,
+				7E8006882FBB12E3008B5EB5 /* DrawerKit in Frameworks */,
+				ABCD000000000000000000A3 /* DrawerKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -86,7 +72,6 @@
 				CBBA2D381F8E807400E0137F /* DrawerKitDemo */,
 				D8AC28F61F965EFC0085F252 /* DrawerKitDemoUITests */,
 				CBBA2D371F8E807400E0137F /* Products */,
-				CBBA2D621F8E817400E0137F /* DrawerKit.framework */,
 			);
 			sourceTree = "<group>";
 		};
@@ -142,13 +127,16 @@
 				CBBA2D321F8E807300E0137F /* Sources */,
 				CBBA2D331F8E807300E0137F /* Frameworks */,
 				CBBA2D341F8E807300E0137F /* Resources */,
-				CBBA2D651F8E817400E0137F /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = DrawerKitDemo;
+			packageProductDependencies = (
+				ABCD000000000000000000A2 /* DrawerKit */,
+				7E8006872FBB12E3008B5EB5 /* DrawerKit */,
+			);
 			productName = DrawerKitDemo;
 			productReference = CBBA2D361F8E807400E0137F /* DrawerKitDemo.app */;
 			productType = "com.apple.product-type.application";
@@ -201,6 +189,9 @@
 				Base,
 			);
 			mainGroup = CBBA2D2D1F8E807300E0137F;
+			packageReferences = (
+				7E8006862FBB12E3008B5EB5 /* XCLocalSwiftPackageReference "../../DrawerKit" */,
+			);
 			productRefGroup = CBBA2D371F8E807400E0137F /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -330,7 +321,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -381,7 +372,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -397,11 +388,14 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = DrawerKitDemo/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.babylonpartners.DrawerKitDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -414,11 +408,14 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = DrawerKitDemo/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.babylonpartners.DrawerKitDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -429,11 +426,15 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 9UNS7TM47M;
 				INFOPLIST_FILE = DrawerKitDemoUITests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.babylonhealth.DrawerKit.DrawerKitDemoUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = DrawerKitDemo;
 			};
@@ -445,11 +446,15 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 9UNS7TM47M;
 				INFOPLIST_FILE = DrawerKitDemoUITests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.babylonhealth.DrawerKit.DrawerKitDemoUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = DrawerKitDemo;
 			};
@@ -486,6 +491,24 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCLocalSwiftPackageReference section */
+		7E8006862FBB12E3008B5EB5 /* XCLocalSwiftPackageReference "../../DrawerKit" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = ../../DrawerKit;
+		};
+/* End XCLocalSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		7E8006872FBB12E3008B5EB5 /* DrawerKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = DrawerKit;
+		};
+		ABCD000000000000000000A2 /* DrawerKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = DrawerKit;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = CBBA2D2E1F8E807300E0137F /* Project object */;
 }

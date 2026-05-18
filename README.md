@@ -1,12 +1,10 @@
 # DrawerKit
 
 [![circleci](https://circleci.com/gh/Babylonpartners/DrawerKit/tree/master.svg?style=svg)](https://circleci.com)
-[![Carthage](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
-[![Version](https://img.shields.io/cocoapods/v/DrawerKit.svg?style=flat)](http://cocoapods.org/pods/DrawerKit)
-[![Platform](https://img.shields.io/cocoapods/p/DrawerKit.svg?style=flat)](http://cocoapods.org/pods/DrawerKit)
-[![Swift 4.0.x](https://img.shields.io/badge/Swift-4.0.x-orange.svg)](https://swift.org)
-[![Xcode](https://img.shields.io/badge/Xcode-9.x-blue.svg)](https://developer.apple.com/xcode)
-[![License](https://img.shields.io/cocoapods/l/DrawerKit.svg?style=flat)](http://cocoapods.org/pods/DrawerKit)
+[![SwiftPM compatible](https://img.shields.io/badge/SwiftPM-compatible-brightgreen.svg)](https://swift.org/package-manager/)
+[![Platform](https://img.shields.io/badge/Platform-iOS%2012%2B-blue.svg)](https://developer.apple.com/ios/)
+[![Swift 5](https://img.shields.io/badge/Swift-5-orange.svg)](https://swift.org)
+[![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
 ## What is DrawerKit?
 __DrawerKit__ is a custom view controller presentation mimicking the kind of behaviour you see in the Apple Maps app.
@@ -390,26 +388,26 @@ collapsed (dismissed) is summarised by the pseudo-code below:
     collapse all the way (ie, dismiss)
 ```
 
-#### Carthage
+#### Swift Package Manager
 
-If you use [Carthage][] to manage your dependencies, simply add
-DrawerKit to your `Cartfile`:
-
-```
-github "Babylonpartners/DrawerKit"
-```
-
-If you use Carthage to build your dependencies, make sure you have added `DrawerKit.framework`
-to the "_Linked Frameworks and Libraries_" section of your target, and have included them in
-your Carthage framework copying build phase.
-
-#### CocoaPods
-
-If you use [CocoaPods][] to manage your dependencies, simply add DrawerKit to your `Podfile`:
+DrawerKit is distributed via [Swift Package Manager][]. In Xcode, choose
+**File ▸ Add Packages…** and enter the repository URL:
 
 ```
-pod 'DrawerKit'
+https://github.com/Babylonpartners/DrawerKit
 ```
 
-[CocoaPods]: https://cocoapods.org/
-[Carthage]: https://github.com/Carthage/Carthage
+Or add it as a dependency in your own `Package.swift`:
+
+```swift
+dependencies: [
+    .package(url: "https://github.com/Babylonpartners/DrawerKit", from: "1.0.0"),
+],
+targets: [
+    .target(name: "YourTarget", dependencies: ["DrawerKit"]),
+]
+```
+
+Minimum requirements: iOS 12, Swift 5.
+
+[Swift Package Manager]: https://swift.org/package-manager/

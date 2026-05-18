@@ -1,3 +1,5 @@
+import UIKit
+
 final class PullToDismissManager: NSObject, UIScrollViewDelegate {
     private(set) weak var delegate: UIScrollViewDelegate?
     private weak var presentationController: PresentationController?
