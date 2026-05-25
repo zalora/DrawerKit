@@ -77,9 +77,25 @@ extension PresentationController {
         containerView?.removeGestureRecognizer(tapGesture)
         drawerDismissalTapGR = nil
     }
-
+    
     func enableDrawerDismissalTapRecogniser(enabled: Bool) {
         drawerDismissalTapGR?.isEnabled = enabled
+    }
+}
+
+extension PresentationController {
+    func setupDrawerDismissalHandleButtonAction() {
+        let isDismissable = isDismissableByTouchingUpInsideHandleView
+        guard isDismissable else { return }
+        handleButton?.addTarget(self, action: #selector(handleDrawerDismissalHandleButtonTouchUpInside), for: .touchUpInside)
+    }
+    
+    func removeDrawerDismissalHandleButtonAction() {
+        handleButton?.removeTarget(self, action: #selector(handleDrawerDismissalHandleButtonTouchUpInside), for: .touchUpInside)
+    }
+    
+    func enableDrawerDismissalHandleButton(enabled: Bool) {
+        handleButton?.isEnabled = enabled
     }
 }
 
@@ -128,12 +144,17 @@ extension PresentationController {
         handleView.translatesAutoresizingMaskIntoConstraints = false
         handleView.backgroundColor = handleConfig.backgroundColor
         handleView.layer.masksToBounds = true
+        handleView.contentMode = .scaleAspectFit
 
         switch handleConfig.cornerRadius {
         case .automatic:
             handleView.layer.cornerRadius = handleConfig.size.height / 2
         case let .custom(radius):
             handleView.layer.cornerRadius = radius
+        }
+        
+        if handleConfig.hasImages {
+            handleView.image = configuration.supportsPartialExpansion ? handleConfig.openingImage : handleConfig.closingImage
         }
 
         presentedView.addSubview(handleView)
@@ -148,6 +169,59 @@ extension PresentationController {
 
     func removeHandleView() {
         self.handleView?.removeFromSuperview()
+    }
+}
+
+extension PresentationController {
+    func setupHandleButton() {
+        guard
+            let presentedView = self.presentedView,
+            let handleButton = self.handleButton,
+            let handleConfig = configuration.handleViewConfiguration
+            else { return }
+        
+        handleButton.translatesAutoresizingMaskIntoConstraints = false
+        handleButton.backgroundColor = .clear
+        handleButton.layer.masksToBounds = true
+        handleButton.accessibilityIdentifier = "dismissDrawerButton"
+        
+        presentedView.addSubview(handleButton)
+        
+        NSLayoutConstraint.activate([
+            handleButton.widthAnchor.constraint(equalToConstant: handleConfig.size.width + handleConfig.top * 2),
+            handleButton.heightAnchor.constraint(equalToConstant: handleConfig.size.height + handleConfig.top * 2),
+            handleButton.centerXAnchor.constraint(equalTo: presentedView.centerXAnchor),
+            handleButton.topAnchor.constraint(equalTo: presentedView.topAnchor, constant: 0)
+            ])
+    }
+    
+    func removeHandleButton() {
+        self.handleButton?.removeFromSuperview()
+    }
+}
+
+extension PresentationController {
+    func setupBackgroundView() {
+        guard
+            let containerView = self.containerView,
+            let backgroundView = self.backgroundView,
+            let backgroundconfig = configuration.backgroundViewConfiguration
+            else { return }
+        
+        backgroundView.backgroundColor = backgroundconfig.backgroundColor   
+        backgroundView.translatesAutoresizingMaskIntoConstraints = false
+        containerView.addSubview(backgroundView)
+        
+        NSLayoutConstraint.activate([
+            backgroundView.topAnchor.constraint(equalTo: containerView.topAnchor),
+            backgroundView.leftAnchor.constraint(equalTo: containerView.leftAnchor),
+            backgroundView.rightAnchor.constraint(equalTo: containerView.rightAnchor),
+            backgroundView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor)
+            ])
+    }
+    
+    func removeBackgroundView() {
+        self.backgroundView?.removeFromSuperview()
     }
 }
 

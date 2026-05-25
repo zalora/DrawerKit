@@ -1,3 +1,5 @@
+import UIKit
+
 public protocol DrawerPresentationControlling: class {
     /// The scroll view to enable pull-to-dismiss on the drawer. It can be
     /// placed at any origin of any arbitrary size.

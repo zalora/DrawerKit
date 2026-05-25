@@ -15,6 +15,7 @@ extension PresentationController {
         guard tapY < currentDrawerY else { return }
         NotificationCenter.default.post(notification: DrawerNotification.drawerExteriorTapped)
         tapGesture.isEnabled = false
+        backgroundView?.alpha = 0
         animateTransition(to: .dismissed)
     }
 
@@ -49,6 +50,13 @@ extension PresentationController {
         default:
             break
         }
+    }
+    
+    @objc func handleDrawerDismissalHandleButtonTouchUpInside() {
+        NotificationCenter.default.post(notification: DrawerNotification.drawerInteriorTapped)
+        handleButton?.isEnabled = false
+        backgroundView?.alpha = 0
+        animateTransition(to: .dismissed)
     }
 
     func applyTranslationY(_ translationY: CGFloat) {

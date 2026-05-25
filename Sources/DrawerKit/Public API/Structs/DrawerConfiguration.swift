@@ -118,6 +118,10 @@ public struct DrawerConfiguration {
     /// How many taps are required for dismissing the drawer by tapping outside of it.
     /// The default value is 1.
     public var numberOfTapsForOutsideDrawerDismissal: Int
+    
+    /// Whether or not the drawer can be dismissed by touching up inside the handle view when it's in full presentation state.
+    /// The default value is `true`.
+    public var isDismissableByTouchingUpInsideHandleView: Bool
 
     /// How fast one needs to "flick" the drawer up or down to make it ignore the
     /// partially expanded state. Flicking fast enough up always presents to full screen
@@ -155,6 +159,8 @@ public struct DrawerConfiguration {
     /// property to `nil` to hide the handle view. The default value is
     /// `HandleViewConfiguration()`.
     public var handleViewConfiguration: HandleViewConfiguration?
+    
+    public var backgroundViewConfiguration : BackgroundViewConfiguration?
 
     /// The configuration options for the drawer's border, should it be shown. Set this
     /// property to `nil` so as not to have a drawer border. The default value is `nil`.
@@ -180,12 +186,14 @@ public struct DrawerConfiguration {
                 numberOfTapsForFullDrawerPresentation: Int = 1,
                 isDismissableByOutsideDrawerTaps: Bool = true,
                 numberOfTapsForOutsideDrawerDismissal: Int = 1,
+                isDismissableByTouchingUpInsideHandleView: Bool = true,
                 flickSpeedThreshold: CGFloat = 3,
                 upperMarkGap: CGFloat = 40,
                 lowerMarkGap: CGFloat = 40,
                 maximumCornerRadius: CGFloat = 15,
                 cornerAnimationOption: CornerAnimationOption = .maximumAtPartialY,
                 handleViewConfiguration: HandleViewConfiguration? = HandleViewConfiguration(),
+                backgroundViewConfiguration: BackgroundViewConfiguration? = nil,
                 drawerBorderConfiguration: DrawerBorderConfiguration? = nil,
                 drawerShadowConfiguration: DrawerShadowConfiguration? = nil,
                 passthroughTouchesInStates: PassthroughOptions = [.collapsed, .partiallyExpanded]) {
@@ -208,6 +216,7 @@ public struct DrawerConfiguration {
         self.numberOfTapsForFullDrawerPresentation = max(0, numberOfTapsForFullDrawerPresentation)
         self.isDismissableByOutsideDrawerTaps = isDismissableByOutsideDrawerTaps
         self.numberOfTapsForOutsideDrawerDismissal = max(0, numberOfTapsForOutsideDrawerDismissal)
+        self.isDismissableByTouchingUpInsideHandleView = isDismissableByTouchingUpInsideHandleView
         self.flickSpeedThreshold = max(0, flickSpeedThreshold)
         self.upperMarkGap = max(0, upperMarkGap)
         self.lowerMarkGap = max(0, lowerMarkGap)
@@ -217,6 +226,7 @@ public struct DrawerConfiguration {
         self.drawerBorderConfiguration = drawerBorderConfiguration
         self.drawerShadowConfiguration = drawerShadowConfiguration
         self.passthroughTouchesInStates = passthroughTouchesInStates
+        self.backgroundViewConfiguration = backgroundViewConfiguration
     }
 }
 
@@ -233,6 +243,7 @@ extension DrawerConfiguration: Equatable {
             && lhs.numberOfTapsForFullDrawerPresentation == rhs.numberOfTapsForFullDrawerPresentation
             && lhs.isDismissableByOutsideDrawerTaps == rhs.isDismissableByOutsideDrawerTaps
             && lhs.numberOfTapsForOutsideDrawerDismissal == rhs.numberOfTapsForOutsideDrawerDismissal
+            && lhs.isDismissableByTouchingUpInsideHandleView == rhs.isDismissableByTouchingUpInsideHandleView
             && lhs.flickSpeedThreshold == rhs.flickSpeedThreshold
             && lhs.upperMarkGap == rhs.upperMarkGap
             && lhs.lowerMarkGap == rhs.lowerMarkGap
@@ -240,5 +251,6 @@ extension DrawerConfiguration: Equatable {
             && lhs.handleViewConfiguration == rhs.handleViewConfiguration
             && lhs.drawerBorderConfiguration == rhs.drawerBorderConfiguration
             && lhs.drawerShadowConfiguration == rhs.drawerShadowConfiguration
+            && lhs.backgroundViewConfiguration == rhs.backgroundViewConfiguration
     }
 }

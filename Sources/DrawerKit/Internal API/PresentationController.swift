@@ -3,7 +3,9 @@ import UIKit
 final class PresentationController: UIPresentationController {
     let configuration: DrawerConfiguration // intentionally internal and immutable
     let inDebugMode: Bool
-    let handleView: UIView?
+    let handleView: UIImageView?
+    let handleButton: UIButton?
+    let backgroundView: UIView?
 
     var presentationContainerView: PresentationContainerView!
 
@@ -54,7 +56,9 @@ final class PresentationController: UIPresentationController {
          inDebugMode: Bool = false) {
         self.configuration = configuration
         self.inDebugMode = inDebugMode
-        self.handleView = (configuration.handleViewConfiguration != nil ? UIView() : nil)
+        self.handleView = (configuration.handleViewConfiguration != nil ? UIImageView() : nil)
+        self.handleButton = (configuration.handleViewConfiguration != nil ? UIButton() : nil)
+        self.backgroundView = (configuration.handleViewConfiguration != nil ? UIView() : nil)
         self.presentingDrawerAnimationActions = presentingDrawerAnimationActions
         self.presentedDrawerAnimationActions = presentedDrawerAnimationActions
         self.targetDrawerState = configuration.initialState ?? (configuration.supportsPartialExpansion ? .partiallyExpanded : .fullyExpanded)
@@ -68,6 +72,7 @@ final class PresentationController: UIPresentationController {
             targetDrawerState == .fullyExpanded ||
             targetDrawerState == .collapsed
         drawerFullExpansionTapGR?.isEnabled = (targetDrawerState == .partiallyExpanded || targetDrawerState == .collapsed)
+        enableDrawerDismissalHandleButton(enabled: targetDrawerState == .fullyExpanded)
 
         if let scrollView = scrollViewForPullToDismiss, let manager = pullToDismissManager {
             switch targetDrawerState {
@@ -124,9 +129,12 @@ extension PresentationController {
         containerView?.backgroundColor = .clear
         setupDrawerFullExpansionTapRecogniser()
         setupDrawerDismissalTapRecogniser()
+        setupDrawerDismissalHandleButtonAction()
         setupDrawerDragRecogniser()
         setupDebugHeightMarks()
+        setupHandleButton()
         setupHandleView()
+        setupBackgroundView()
         setupDrawerBorder()
         setupDrawerShadow()
         addCornerRadiusAnimationEnding(at: .partiallyExpanded)
@@ -149,8 +157,11 @@ extension PresentationController {
         removePresentationContainerView()
         removeDrawerFullExpansionTapRecogniser()
         removeDrawerDismissalTapRecogniser()
+        removeDrawerDismissalHandleButtonAction()
         removeDrawerDragRecogniser()
+        removeHandleButton()
         removeHandleView()
+        removeBackgroundView()
     }
 
     override func containerViewWillLayoutSubviews() {
